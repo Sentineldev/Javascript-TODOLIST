@@ -1,2 +1,5 @@
 # Javascript-TODOLIST
-Lista de pendientes realizada con javascript y python
+Proyecto de una lista de pendientes
+El proyecto esta realizado con
+Javascript, HTML Y CSS en la parte del front
+MYSQL y Python en la parte del backend.
