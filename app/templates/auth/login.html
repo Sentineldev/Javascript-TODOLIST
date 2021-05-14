@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresar</title>
+    <link rel="stylesheet" href="/static/css/style-login.css">
+</head>
+<body>
+    <form action="" method="POST">
+        <h1>Ingresar</h1>
+        <label for="username">
+            <input type="text" id="username" placeholder="Username" name="username">
+        </label>
+        <label for="password">
+            <input type="password" id="password" placeholder="Password" name="password">
+        </label>
+        <label for="boton">
+            <button type="submit" id="submit">Ingresar</button>
+        </label>
+        <span><a href=" {{url_for('auth.register')}} ">No estas registrado?. Registrate!</a></span>
+    </form>
+</body>
+</html>

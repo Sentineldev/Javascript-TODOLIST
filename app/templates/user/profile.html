@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuario</title>
+    <link rel="stylesheet" href="/static/css/style-profile1.css">
+</head>
+<body>
+    <a href=" {{url_for('auth.logout')}} " id="btn-salir">Salir</a>
+    <nav>
+        <ul>
+            <li class="nav-links"><a href=" {{url_for('user.profile')}} ">Perfil</a></li>
+            <li class="nav-links"><a href=" {{url_for('user.todos')}} ">Pendientes</a></li>
+            <li class="nav-buttons"><button class="voice">Comando de Voz</button></li>
+        </ul>
+    </nav>
+    <div class="contenedor">
+        <header>
+            <img width="150" src="/images/profile2.png" alt="">
+            <h1> {{usuario['username']}} </h1>
+        </header>
+        <div class="contenido">
+            <h1>Tu informacion</h1>
+            <h2>Nombre: <span>{{usuario['nombre']}} {{usuario['apellido']}}</span></h2>
+            <h2>Edad: <span> {{usuario['edad']}} </span></h2>
+            <h2>Correo: <span>{{usuario['correo']}}</span></h2>
+        </div>
+    </div>
+</body>
+</html>
