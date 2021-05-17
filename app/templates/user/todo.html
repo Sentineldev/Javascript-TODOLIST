@@ -5,12 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
-    <link rel="stylesheet" href="/static/css/style1.css">
+    <link rel="stylesheet" href="/static/css/style3.css">
 </head>
 <body>
+    <div class="modal" id="model">
+        <div class="contenedor_modificar">
+            <h1 id="mod-header">Modificar</h1>
+            <label for="modificar-titulo">
+                <input type="text" id="mod-titulo" name="modificar-titulo" placeholder="Nuevo Titulo">
+            </label>
+            <label for="modificar-descripcion">
+                <input type="text" id="mod-descripcion" name="modificar-descripcion" placeholder="Nueva Descripcion">
+            </label>
+            <button id="modificar">Modificar</button>
+        </div>
+    </div>
+    <input type="hidden" value=" {{usuario}} " id="data">
     <a href=" {{url_for('auth.logout')}}  " id="btn-salir">Salir</a>
     <div class="buscador">
-        <input onkeydown="buscar(event)" type="text" placeholder="Buscar todo" id="buscar">
+        <input onkeypress="buscar(event)" type="text" placeholder="Buscar todo" id="buscar">
     </div>
     <nav>
         <ul>
@@ -19,10 +32,10 @@
             <li class="nav-buttons"><button class="voice">Comando de Voz</button></li>
         </ul>
     </nav>
-    <form action="" id="form">
+    <form  id="form">
         <div class="contenedor">
             <!-- <label for="titulo">Titulo</label>-->
-            <input placeholder="Titulo" type="text" name="titulo" id="titulo" autocomplete="off">
+            <input placeholder="Titulo" type="text" name="titulo" id="todo-titulo" autocomplete="off">
             <!--<label for="descripcion">Descripcion</label>-->
             <input placeholder="Descripcion" type="text" name="descripcion" id="descripcion" autocomplete="off">
             <button type="submit" id="btn-crear">Crear</button>
@@ -33,5 +46,5 @@
         </section>
     </div>
 </body>
-<script src="/static/js/todo.js"></script>
+<script src="/static/js/todos.js"></script>
 </html>
