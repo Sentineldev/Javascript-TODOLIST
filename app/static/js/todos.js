@@ -1,28 +1,28 @@
+
+//contenedor para renderizar los todos
 const contenedor = document.getElementById('todos')
-//let todos = []
 
 
-
-
+//Funcion para la busqueda de un todo
 function buscar_todo_titulo(titulo,todos){
     let todos_return = []
     todos.forEach((elemento,indice)=>{
-        if(elemento.titulo.toLowerCase() === titulo.toLowerCase()){
+        if(elemento.titulo.toLowerCase().includes(titulo.toLowerCase())){
             todos_return.push(elemento)
         }
     })
     return todos_return
 }
-
+//FUncion para buscar y listar los todos con un titulo especifico
 async function buscar_todo(titulo){
     let todos = await listar_todos()
     const todos_busqueda = buscar_todo_titulo(titulo,todos)
     const todos_template = todos_busqueda.map(todo =>{
         if(todo.completado === 0){
-            return '<div class="todo" style="border-color:red;" >'+'<h1 style="red;">'+todo.titulo+'</h1>'+'<p>'+todo.descripcion+'</p>'+'<button class="eliminar">Eliminar</button>'+'<button class="editar">Editar</button>'+'<button class="completado">Completado</button>'+'</div>'
+            return '<div class="todo" style="border-color:red;" >'+'<h1 style="red;">'+todo.titulo+'</h1>'+'<pre>'+todo.descripcion+'</pre>'+'<button class="eliminar">Eliminar</button>'+'<button class="editar">Editar</button>'+'<button class="completado">Completado</button>'+'</div>'
         }
         else{
-            return '<div class="todo" style="border-color:rgb(21,255,0);" >'+'<h1 style="color:rgb(21,255,0);">'+todo.titulo+'</h1>'+'<p>'+todo.descripcion+'</p>'+'<button class="eliminar">Eliminar</button>'+'<button class="editar">Editar</button>'+'<button class="completado">Completado</button>'+'</div>'
+            return '<div class="todo" style="border-color:rgb(21,255,0);" >'+'<h1 style="color:rgb(21,255,0);">'+todo.titulo+'</h1>'+'<pre>'+todo.descripcion+'</pre>'+'<button class="eliminar">Eliminar</button>'+'<button class="editar">Editar</button>'+'<button class="completado">Completado</button>'+'</div>'
         }
     })
     contenedor.innerHTML = todos_template.join('')
@@ -37,7 +37,7 @@ function buscar(evento){
         buscar_todo(buscar_input.value)
     }
 }
-
+//Funcion para modificar los campos del todo
 function editar_todo(indice,todos){
     const mod_titulo = document.getElementById('mod-titulo')
     mod_titulo.value = todos[indice].titulo
@@ -63,8 +63,7 @@ function editar_todo(indice,todos){
         render()
     })
 }
-
-
+//Funcion para añadir el evento modificar al todo
 function editar_todo_evento(todos){
     const boton_editar = document.querySelectorAll('.todo .editar')
     boton_editar.forEach((elemento,indice)=>{
@@ -75,6 +74,7 @@ function editar_todo_evento(todos){
         })
     })
 }
+//Funcion  para eliminar un todo
 function eliminar_todo(todos){
     let url = window.origin+'/delete_todo'
     const boton_eliminar = document.querySelectorAll('.todo .eliminar')
@@ -93,7 +93,7 @@ function eliminar_todo(todos){
         })
     })
 }
-
+//Funcionar para actualizar el estado del todo
 function completar_todo(todos){
     const boton_completar = document.querySelectorAll('.todo .completado')
     boton_completar.forEach(async (elemento,indice)=>{
@@ -123,15 +123,15 @@ function completar_todo(todos){
     })
 }
 
-
+//Funcion para renderizar los todos.
 async function render(){
     let todos = await listar_todos()
     const todos_template = todos.map(todo =>{
         if(todo.completado === 0){
-            return '<div class="todo" style="border-color:red;" >'+'<h1 style="red;">'+todo.titulo+'</h1>'+'<p>'+todo.descripcion+'</p>'+'<button class="eliminar">Eliminar</button>'+'<button class="editar">Editar</button>'+'<button class="completado">Completado</button>'+'</div>'
+            return '<div class="todo" style="border-color:red;" >'+'<h1 style="red;">'+todo.titulo+'</h1>'+'<pre>'+todo.descripcion+'</pre>'+'<button class="eliminar">Eliminar</button>'+'<button class="editar">Editar</button>'+'<button class="completado">Completado</button>'+'</div>'
         }
         else{
-            return '<div class="todo" style="border-color:rgb(21,255,0);" >'+'<h1 style="color:rgb(21,255,0);">'+todo.titulo+'</h1>'+'<p>'+todo.descripcion+'</p>'+'<button class="eliminar">Eliminar</button>'+'<button class="editar">Editar</button>'+'<button class="completado">Completado</button>'+'</div>'
+            return '<div class="todo" style="border-color:rgb(21,255,0);" >'+'<h1 style="color:rgb(21,255,0);">'+todo.titulo+'</h1>'+'<pre>'+todo.descripcion+'</pre>'+'<button class="eliminar">Eliminar</button>'+'<button class="editar">Editar</button>'+'<button class="completado">Completado</button>'+'</div>'
         }
     })
     contenedor.innerHTML = todos_template.join('')
@@ -139,7 +139,7 @@ async function render(){
     completar_todo(todos)
     editar_todo_evento(todos)
 }
-
+//Listar todos los todos del perfil que inicio sesion
 async function listar_todos(){
     const url = window.origin+'/get_todos'
     let todos = []
@@ -156,7 +156,7 @@ async function listar_todos(){
 }
 
 
-
+//AJAX para generar el todo y luego ser renderizado
 async function crear_todo(){
     const url = window.origin+'/create_todo'
     const titulo = document.getElementById('todo-titulo')
@@ -177,7 +177,7 @@ async function crear_todo(){
     send_data = await send_data.json()
     render()
 }
-
+//Renderizar los todos al cargar la pagina
 window.onload = () =>{
     render()
     const form = document.getElementById('form')

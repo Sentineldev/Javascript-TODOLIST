@@ -3,6 +3,7 @@ from db import get_db
 
 bp = Blueprint('api',__name__)
 
+""" Ruta para listar todos los todos de un usuario en especifico""" 
 @bp.route('/get_todos',methods=['GET'])
 def get_todos():
     if session.get('user_id'):
@@ -17,7 +18,7 @@ def get_todos():
         resp = make_response(jsonify({"response":"No se pudieron cargar los datos"}))
         return resp
 
-
+"""Ruta para crear el pendiente y guardarlo en la base de datos. """
 @bp.route('/create_todo',methods=['POST'])
 def create_todo():
     if session.get('user_id'):
@@ -34,7 +35,7 @@ def create_todo():
     else:
         response = make_response(jsonify({"message":"Request Failed. Login first!"}),404)
         return response
-
+""" Ruta para eliminar un todo con el id enviado"""
 @bp.route('/delete_todo/<id>',methods=['DELETE'])
 def delete_todo(id):
     if session.get('user_id'):
@@ -48,7 +49,7 @@ def delete_todo(id):
     else:
         resp = make_response(jsonify({"message":"User or todo not found!"}))
         return resp
-
+"""Actualizar el estado del pendiente"""
 @bp.route('/update_todo_completado',methods=['PATCH'])
 def update_todo_completado():
     if session.get('user_id'):
@@ -64,6 +65,8 @@ def update_todo_completado():
         resp = make_response(jsonify({"message":"User not found!"}))
         return resp
 
+
+"""Modificar los campos del pendiente"""
 @bp.route('/modificar_todo',methods=['PUT'])
 def modificar_todo():
     if session.get('user_id'):
@@ -80,6 +83,8 @@ def modificar_todo():
         resp = make_response(jsonify({"message":"Not updated!"}))
         return resp
 
+
+"""Listar los todos con un titulo especifico"""
 @bp.route('/listar_busqueda',methods=['GET'])
 def listar_busqueda():
     if session.get('user_id'):

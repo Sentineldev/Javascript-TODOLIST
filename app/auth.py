@@ -7,7 +7,7 @@ from werkzeug.security import generate_password_hash,check_password_hash
 bp = Blueprint('auth',__name__)
 
 
-
+#autenticacion para el ingreso al perfil del usuario
 @bp.route('/login',methods=['POST','GET'])
 def login():
     if request.method == 'POST':
@@ -23,10 +23,13 @@ def login():
                 session.clear()
                 session['user_id'] = usuario['id']
                 return redirect(url_for('user.profile'))
+            else:
+                flash('Usuario y/o contraseña invalida.')
         else:
-            print('No existe')
+            flash('Usuario y/o contraseña invalida.')
     return render_template('auth/login.html')
 
+#plantilla de registro del usuario
 @bp.route('/register',methods=['POST','GET'])
 def register():
     if request.method == 'POST':

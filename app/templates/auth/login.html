@@ -5,10 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ingresar</title>
-    <link rel="stylesheet" href="/static/css/style-login.css">
+    <link rel="stylesheet" href="/static/css/style-login1.css">
 </head>
 <body>
+    <!--Formulario para ingresar al perfil-->
     <form action="" method="POST">
+        <!--Obtener los mensajes de validacion-->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <p id="message"> {{messages[0]}} </p>
+        {% endif %}
+        {% endwith %}
         <h1>Ingresar</h1>
         <label for="username">
             <input type="text" id="username" placeholder="Username" name="username">

@@ -5,26 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
-    <link rel="stylesheet" href="/static/css/style3.css">
+    <link rel="stylesheet" href="/static/css/style4.1.css">
 </head>
 <body>
+    <!--Modal que solo sera visible cuando el usuario haga click en 'editar'-->
     <div class="modal" id="model">
         <div class="contenedor_modificar">
             <h1 id="mod-header">Modificar</h1>
             <label for="modificar-titulo">
                 <input type="text" id="mod-titulo" name="modificar-titulo" placeholder="Nuevo Titulo">
             </label>
-            <label for="modificar-descripcion">
-                <input type="text" id="mod-descripcion" name="modificar-descripcion" placeholder="Nueva Descripcion">
-            </label>
+            <textarea id="mod-descripcion" name="modificar-descripcion" placeholder="Nueva Descripcion..."></textarea>
             <button id="modificar">Modificar</button>
         </div>
     </div>
-    <input type="hidden" value=" {{usuario}} " id="data">
+    <!--Boton para cerrar sesion-->
     <a href=" {{url_for('auth.logout')}}  " id="btn-salir">Salir</a>
+    <!--Barra de busqueda-->
     <div class="buscador">
         <input onkeypress="buscar(event)" type="text" placeholder="Buscar todo" id="buscar">
     </div>
+    <!--Barra de navegacion-->
     <nav>
         <ul>
             <li class="nav-links"><a href=" {{url_for('user.profile')}} ">Perfil</a></li>
@@ -32,6 +33,7 @@
             <li class="nav-buttons"><button class="voice">Comando de Voz</button></li>
         </ul>
     </nav>
+    <!--Formulario para generar el todo-->
     <form  id="form">
         <div class="contenedor">
             <!-- <label for="titulo">Titulo</label>-->
@@ -41,6 +43,7 @@
             <button type="submit" id="btn-crear">Crear</button>
         </div>
     </form>
+    <!--Contenedor para listar los todos-->
     <div class="box">
         <section class="contenido" id="todos">
         </section>

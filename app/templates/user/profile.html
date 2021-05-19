@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="/static/css/style-profile1.css">
 </head>
 <body>
+    <!--Enlace para cerrar sesion-->
     <a href=" {{url_for('auth.logout')}} " id="btn-salir">Salir</a>
+    <!--Barra de navegacion-->
     <nav>
         <ul>
             <li class="nav-links"><a href=" {{url_for('user.profile')}} ">Perfil</a></li>
@@ -16,6 +18,7 @@
             <li class="nav-buttons"><button class="voice">Comando de Voz</button></li>
         </ul>
     </nav>
+    <!--Contenedor para mostrar los datos del usuario-->
     <div class="contenedor">
         <header>
             <h1> {{usuario['username']}} </h1>

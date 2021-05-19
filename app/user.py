@@ -5,7 +5,7 @@ import json
 
 @bp.route('/profile/')
 def profile():
-    
+    #Cargar los datos y mostrarlos en el template del perfil
     if session.get('user_id'):
         db,c = get_db()
         c.execute(
@@ -20,7 +20,7 @@ def profile():
 @bp.route('/todo-list/')
 def todos():
     if session.get('user_id'):
-        usuario = json.dumps( [{"usuario":'Jesus',"id":1}] )
-        return render_template('user/todo.html',usuario=usuario)
+        #Vista de pendientes del usuario
+        return render_template('user/todo.html')
     else:
         return redirect(url_for('auth.login'))

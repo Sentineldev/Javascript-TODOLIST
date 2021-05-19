@@ -3,6 +3,7 @@ from flask import jsonify
 
 def create_app():
     app = Flask(__name__)
+    #Configuracion de la aplicacion
     app.config.from_mapping(
         SECRET_KEY='nosequeponeraquiXD',
         DATABASE_HOST='localhost',
@@ -10,33 +11,20 @@ def create_app():
         DATABASE_PASSWORD='1234',
         DATABASE ='todo_list'
     )
-
+    #inicializar el script para conectarse a la database
     import db
     db.init_app(app)
 
-
+    #Importar y registrar los blueprint de los demas modulos
     import auth
     import user
     import api
     app.register_blueprint(user.bp)
     app.register_blueprint(auth.bp)
     app.register_blueprint(api.bp)
-
+    #Ruta principal
     @app.route('/')
     def index():
         return redirect(url_for('auth.login'))
-    
-    @app.route('/api/v1/transactions',methods=['GET'])
-    def get_transactions():
-        print('Hola soy un api con metodo GET')
-        response = {'name':'Jesus'}
-        return jsonify(response)
-
-    @app.route('/json-example',methods=['POST'])
-    def json_example():
-        req = request.get_json()
-        print(req)
-        res = make_response(jsonify({"message":"JSON Received"}),200)
-        return res
     return app
 
